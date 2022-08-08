@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Capriola&family=Lobster&display=swap");
+
 .App {
   text-align: center;
   margin-top: 20px;
 }
 
 .app-header {
-  font-size: 24px;
+  font-size: 36px;
   font-weight: 700;
+  font-family: "Capriola", sans-serif;
 }
 
 .form {

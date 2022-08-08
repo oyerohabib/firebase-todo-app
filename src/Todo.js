@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Todo(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(props.todo.todo);
 
   const handleOpen = () => {
     setOpen(true);

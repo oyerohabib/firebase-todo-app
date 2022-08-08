@@ -2,7 +2,7 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+"on":
   push:
     branches:
       - main
@@ -12,9 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm ci && npm run build
+      - run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile && npm run build
+          elif [ -e package-lock.json ]; then
+          npm ci && npm run build
+          else
+          npm i && npm run build
+          fi
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_B2518 }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_APP_B2518 }}"
           channelId: live
           projectId: todo-app-b2518

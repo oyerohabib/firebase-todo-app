@@ -21,15 +21,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "10px",
     padding: "8px 5px",
   },
-  showPointer: {
-    cursor: pointer
-  }
 }));
 
 export default function Todo(props) {
-  const classes = useStyles()
+  const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,12 +34,15 @@ export default function Todo(props) {
 
   const updateTodo = () => {
     // update todo with the new input text
-    db.collection("todos").doc(props.todo.id).set({
-      todo: input
-    }, {merge: true})
+    db.collection("todos").doc(props.todo.id).set(
+      {
+        todo: input,
+      },
+      { merge: true }
+    );
     // close modal afterwards
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <>
@@ -63,9 +63,8 @@ export default function Todo(props) {
       <List>
         <ListItem disablePadding>
           <ListItemText primary={props.todo.todo} />
-          <EditIcon onClick={handleOpen} className={classes.showPointer} />
+          <EditIcon onClick={handleOpen} />
           <DeleteForeverIcon
-            className={classes.showPointer}
             onClick={(event) =>
               db.collection("todos").doc(props.todo.id).delete()
             }

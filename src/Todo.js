@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     marginRight: "10px",
-    padding: "8px 5px"
+    padding: "8px 5px",
+  },
+  showPointer: {
+    cursor: pointer
   }
 }));
 
@@ -59,9 +62,10 @@ export default function Todo(props) {
       </Modal>
       <List>
         <ListItem disablePadding>
-          <ListItemText primary={props.todo.todo} secondary="Dummy Deadline " />
-          <EditIcon onClick={handleOpen} />
+          <ListItemText primary={props.todo.todo} />
+          <EditIcon onClick={handleOpen} className={classes.showPointer} />
           <DeleteForeverIcon
+            className={classes.showPointer}
             onClick={(event) =>
               db.collection("todos").doc(props.todo.id).delete()
             }

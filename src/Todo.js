@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Todo(props) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState(props.todo.todo);
+  const [input, setInput] = useState("");
 
   const handleOpen = () => {
     setOpen(true);
@@ -51,7 +51,7 @@ export default function Todo(props) {
           <input
             type="text"
             placeholder={props.todo.todo}
-            value={input}
+            value={props.todo.todo}
             onChange={(e) => setInput(e.target.value)}
             className={classes.input}
           />
